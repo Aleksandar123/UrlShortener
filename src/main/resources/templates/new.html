@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>URL Shortener</title>
+</head>
+
+<body>
+<div class="container">
+<header th:replace="layout :: site-header" />
+<main id="links">
+
+    <form action="#" th:action="@{/new}" th:object="${links}" method="post" >
+        <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{shortUrl}"/>
+        <input type="text" th:field="*{longUrl}"/>
+        <input type="submit" aria-label="Create new link" value="Create new link"/>
+
+
+        <span class="formError" th:if="${#fields.hasErrors('shortUrl')}"  th:errors="*{shortUrl}">Invalid Short url</span>
+        <span class="formError" th:if="${#fields.hasErrors('longUrl')}"  th:errors="*{longUrl}">Invalid url</span>
+        <span id="validate-status"></span>
+    </form>
+</main>
+</div>
+</body>
+
+</html>

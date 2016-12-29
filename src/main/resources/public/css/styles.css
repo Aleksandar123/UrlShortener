@@ -1,0 +1,16 @@
+ul#messages li {
+    display: block;
+    width: 100%;
+    margin: 5px auto;
+    text-align: center;
+    padding: 5px;
+    border-radius: 1px;
+}
+ul#messages li.info {
+    background:#00C851;
+    color:white;
+}
+ul#messages li.error {
+    background: #ff4444;
+    color: white;
+}

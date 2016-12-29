@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+    <title>URL Shortener</title>
+    <!--<link rel="stylesheet" href="/css/font-awesome.min.css" />-->
+    <script src="/js/clipboard.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <header th:replace="layout :: site-header" />
+
+    <main id="links">
+
+    <span class="text-primary">Redirecting to...</span>
+    <span th:text="${link.longUrl}" class="text-primary font-weight-bold">Long URL</span>
+
+
+    <script th:inline="javascript">
+/*<![CDATA[*/
+
+
+    var link = /*[[${link.longUrl}]]*/ 'http://localhost:8080';
+
+    console.log(link);
+    window.location = link;
+
+/*]]>*/
+</script>
+    </main></div>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+    <title>URL Shortener</title>
+    <!--<link rel="stylesheet" href="/css/font-awesome.min.css" />-->
+    <style>
+        .down{
+            padding-top:100px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <header th:replace="layout :: site-header" />
+
+    <div class="row">
+        <div class="down"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+    <main id="links">
+
+    <form action="#" th:action="@{/new}" th:object="${links}" method="post" >
+        <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{shortUrl}"/>
+        <div class="input-group">
+            <input type="text" class="form-control" th:field="*{longUrl}" placeholder="Enter long URL" autofocus="autofocus" />
+            <span class="input-group-btn">
+                <input type="submit" aria-label="Create new link" class="btn btn-primary" value="Shorten it!"/>
+                <!--<button class="btn btn-secondary" type="button">Go!</button>-->
+            </span>
+        </div>
+
+        <span class="formError" th:if="${#fields.hasErrors('shortUrl')}"  th:errors="*{shortUrl}">Invalid Short url</span>
+        <span class="formError" th:if="${#fields.hasErrors('longUrl')}"  th:errors="*{longUrl}">Invalid url</span>
+        <span id="validate-status"></span>
+    </form>
+
+    </main>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

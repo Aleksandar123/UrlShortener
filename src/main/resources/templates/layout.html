@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+
+<!-- HEAD  -->
+<head th:fragment="site-head">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../public/css/styles.css" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" href="../public/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+    <link rel="stylesheet" href="../public/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" />
+
+    <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />
+    <!-- <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />-->
+    <script src="../public/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <!--<script src="../public/js/scripts.js" th:src="@{/js/scripts.js}"></script>-->
+
+
+    <title>URL↔Shortnr</title>
+    <script src="../public/js/scripts.js" th:src="@{/js/scripts.js}"></script>
+    <meta th:include="this :: head" th:remove="tag"/>
+</head>
+
+<body>
+<header th:fragment="site-header" th:remove="tag">
+    <header class="header">
+        <h1>
+            <a href="http://localhost:8080">URL<i class="fa fa-arrows-h" aria-hidden="true"></i>Shortnr</a>
+        </h1>
+    </header>
+    <ul id="messages" th:with="notifyMessages=${session[T(com.urlshortener.services.impl.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+        <li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+            th:class="${#strings.toLowerCase(msg.type)}">
+        </li>
+        <span th:if="${notifyMessages}" th:remove="all" th:text="${session.remove(T(com.urlshortener.services.impl.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+    </ul>
+</header>
+
+</body>
+</html>

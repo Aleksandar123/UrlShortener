@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+    <title>URL Shortener</title>
+    <!--<link rel="stylesheet" href="/css/font-awesome.min.css" />-->
+    <script src="/js/clipboard.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <header th:replace="layout :: site-header" />
+    <main id="links">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th colspan="2"></th><th>Copy to clipboard</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>Short URL:</th><th><a id="shorten"> <span id="h1short" th:text="${link.shortUrl}">Short URL</span></a></th><th>
+            <button class="btn btn-success" data-clipboard-target="#shorten" title="Copy to clipboard">
+                <i class="fa fa-clipboard fa-lg" aria-hidden="true"></i>
+            </button>
+        </th>
+        </tr>
+        <tr>
+            <th>Long URL:</th><th colspan="2"><a th:href="${link.longUrl}"> <span th:text="${link.longUrl}">Long URL</span></a></th>
+        </tr>
+
+        </tbody>
+
+    </table>
+    <!--<h1>Short url :</h1><a id="shorten"> <h1 id="h1short" th:text="${link.shortUrl}">Short URL</h1></a>-->
+<!--
+    <h1>Long url :</h1><a th:href="${link.longUrl}"> <h1 th:text="${link.longUrl}">Long URL</h1></a>
+-->
+</main>
+</div>
+<script th:inline="javascript">
+new Clipboard('.btn');
+
+/*<![CDATA[*/
+
+    var shorten = document.getElementById('shorten');
+    var h1short = document.getElementById('h1short');
+    var link = /*[[${link.shortUrl}]]*/ 'https://google.com';
+
+    console.log(link);
+    fullurl = "http://localhost:8080/" + link;
+    shorten.href = fullurl;
+    h1short.innerHTML = fullurl;
+/*]]>*/
+</script>
+</body>
+
+</html>
